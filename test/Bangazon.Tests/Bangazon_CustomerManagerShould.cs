@@ -30,11 +30,6 @@ namespace Bangazon.Tests
         }
 
         [Fact]
-        public void ListCustomers()
-        {
-
-        }
-
         public void GetSingleCustomer()
         {
             CustomerManager manager = new CustomerManager();
@@ -42,7 +37,16 @@ namespace Bangazon.Tests
             Customer customer = manager.GetSingleCustomer(1);
 
             Assert.Equal(customer.Id, 1);
+        }
 
+        [Fact]
+        public void ListCustomers()
+        {
+            CustomerManager manager = new CustomerManager();
+            manager.Add(_customer);
+            List<Customer> allCustomers = manager.ListCustomers();
+
+            Assert.Contains(_customer, allCustomers);
         }
     }
 }
