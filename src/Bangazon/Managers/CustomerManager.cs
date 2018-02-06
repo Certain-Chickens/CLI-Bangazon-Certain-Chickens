@@ -18,5 +18,10 @@ namespace Bangazon
             return _customerTable.Where(c => c.Id == Id).Single();
         }
 
+        public List<Customer> ListCustomers ()
+        {
+            return _customerTable;
+        }
+
     }
 }
