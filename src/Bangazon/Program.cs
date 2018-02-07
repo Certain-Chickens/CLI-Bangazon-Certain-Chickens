@@ -8,7 +8,7 @@ namespace Bangazon
         static void Main(string[] args)
         {
             // Seed the database if none exists
-            // var db = new DatabaseInitializer();
+            // var db = new DatabaseConnection();
             // db.VerifyDataExists();
 
             // Present the main menu
