@@ -8,7 +8,6 @@ namespace Bangazon
     {
         private List<Customer> _customerTable = new List<Customer>();
 
-
         public void Add(Customer person)
         {
             _customerTable.Add(person);
