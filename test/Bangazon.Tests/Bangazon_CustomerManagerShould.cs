@@ -22,6 +22,7 @@ namespace Bangazon.Tests
                 "37221",
                 "6157865437"
             );
+            
         }
         [Fact]
         public void AddNewCustomer()
