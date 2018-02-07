@@ -30,6 +30,7 @@ namespace Bangazon
         public void UpdateSingleProduct(Product product)
         {
             product.ProductId = 2;
+            product.Title = "Motorcycle";
         }
     }
 }

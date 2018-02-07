@@ -61,6 +61,7 @@ namespace Bangazon.Tests
         productmanager.UpdateSingleProduct(_product);
 
         Assert.Equal(_product.ProductId, 2);
+        Assert.Equal(_product.Title, "Motorcycle");
     }
  }
 
