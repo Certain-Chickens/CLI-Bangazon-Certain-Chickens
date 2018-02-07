@@ -22,5 +22,11 @@ namespace Bangazon
             return _customerTable;
         }
 
+        public Customer ActiveCustomer (int Id)
+        {   
+            var activeCustomer = GetSingleCustomer(Id);
+            return activeCustomer;
+        }
+
     }
 }
