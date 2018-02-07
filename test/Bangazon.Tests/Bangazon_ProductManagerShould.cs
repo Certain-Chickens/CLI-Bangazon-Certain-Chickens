@@ -24,9 +24,19 @@ namespace Bangazon.Tests
     }
 
     [Fact]
-    public void AddNewProduct()
+    public void AddProductProperties()
     {
         Assert.Equal(_product.ProductId, 1);
+    }
+
+    
+    [Fact]
+    public void ListAllProducts() 
+    {
+        ProductManager productmanager = new ProductManager();
+        productmanager.Add(_product);
+        List<Product> listproduct = productmanager.ListProducts();
+        Assert.Contains(_product, listproduct);
     }
 
  }
