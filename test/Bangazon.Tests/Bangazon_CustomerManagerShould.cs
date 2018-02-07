@@ -48,5 +48,6 @@ namespace Bangazon.Tests
 
             Assert.Contains(_customer, allCustomers);
         }
+        
     }
 }
