@@ -50,5 +50,14 @@ namespace Bangazon.Tests
             Assert.Contains(_customer, allCustomers);
         }
         
+        [Fact]
+        public void ActiveCustomer()
+        {
+            CustomerManager manager = new CustomerManager();
+            manager.Add(_customer);
+            var activeCustomer = manager.ActiveCustomer(1);
+
+            Assert.Equal(activeCustomer.Id, 1);
+        }
     }
 }
