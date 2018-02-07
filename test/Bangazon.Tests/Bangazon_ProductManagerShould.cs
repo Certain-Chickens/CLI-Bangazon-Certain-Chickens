@@ -47,9 +47,20 @@ namespace Bangazon.Tests
         List<Product> listproduct = productmanager.ListProducts();
 
         productmanager.RemoveSingleProduct(_product);
-        
-        Assert.DoesNotContain(_product, listproduct);
 
+        Assert.DoesNotContain(_product, listproduct);
+    }
+
+    [Fact]
+    public void UpdateProduct()
+    {
+        ProductManager productmanager = new ProductManager();
+        productmanager.Add(_product);
+        List<Product> listproduct = productmanager.ListProducts();
+
+        productmanager.UpdateSingleProduct(_product);
+
+        Assert.Equal(_product.ProductId, 2);
     }
  }
 

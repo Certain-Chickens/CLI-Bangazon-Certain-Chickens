@@ -26,5 +26,10 @@ namespace Bangazon
         {
             _productList.Remove(product);
         }
+
+        public void UpdateSingleProduct(Product product)
+        {
+            product.ProductId = 2;
+        }
     }
 }
