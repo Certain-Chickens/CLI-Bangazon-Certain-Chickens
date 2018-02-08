@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bangazon
+namespace Bangazon.Managers
 {
     public class ProductManager
     {
@@ -12,10 +12,6 @@ namespace Bangazon
         {
             _productList.Add(product);
         }
-        // public Product GetSingleProduct (int Id)
-        // {
-        //     return _product.Where(c => c.ProductId == Id).Single();
-        // }
 
         public List<Product> ListProducts()
         {
@@ -27,10 +23,19 @@ namespace Bangazon
             _productList.Remove(product);
         }
 
-        public void UpdateSingleProduct(Product product)
+        public Product GetSingleProduct(int id)
         {
-            product.ProductId = 2;
-            product.Title = "Motorcycle";
+            return _productList.Where(c => c.ProductId == id).Single();
         }
+
+        // public Product UpdateSingleProduct(int id)
+        // {
+
+
+        //     product.Title = "Motorcycle";
+        //     _productList.Add(product);
+        //     _productList.
+
+        // }
     }
 }
