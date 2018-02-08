@@ -6,7 +6,7 @@ namespace Bangazon
     {
         public int ProductId { get; set; }
         public int ProductTypeId { get; set; }
-        public int CsutomerId { get; set; }
+        public int CustomerId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
@@ -17,7 +17,7 @@ namespace Bangazon
         {
             this.ProductId = productid;
             this.ProductTypeId = producttypeid;
-            this.CsutomerId = customerid;
+            this.CustomerId = customerid;
             this.Title = title;
             this.Description = description;
             this.Price = price;

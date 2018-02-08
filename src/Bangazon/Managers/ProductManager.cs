@@ -18,9 +18,13 @@ namespace Bangazon.Managers
             return _productList;
         }
 
-        public void RemoveSingleProduct(Product product)
+        public Product RemoveSingleProduct(int id)
         {
-            _productList.Remove(product);
+            var singleProduct = GetSingleProduct(id);
+            var y = _productList.IndexOf(singleProduct);
+
+            _productList.RemoveAt(y);
+            return singleProduct;
         }
 
         public Product GetSingleProduct(int id)

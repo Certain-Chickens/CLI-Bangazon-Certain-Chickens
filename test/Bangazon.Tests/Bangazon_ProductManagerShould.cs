@@ -9,6 +9,7 @@ namespace Bangazon.Managers.Tests
  public class ProductManagerShould
  {
       private Product _product;
+      private Product _product2;
 
     public ProductManagerShould() {
          _product = new Product(
@@ -19,6 +20,15 @@ namespace Bangazon.Managers.Tests
             "Blue Bike",
             2.00,
             2
+        );
+        _product2 = new Product(
+            2,
+            1,
+            1,
+            "Horse",
+            "Blue Horse",
+            3.00,
+            4
         );
 
     }
@@ -44,11 +54,12 @@ namespace Bangazon.Managers.Tests
     {
         ProductManager productmanager = new ProductManager();
         productmanager.Add(_product);
-        List<Product> listproduct = productmanager.ListProducts();
 
-        productmanager.RemoveSingleProduct(_product);
+        Product removedProduct = productmanager.RemoveSingleProduct(1);
 
-        Assert.DoesNotContain(_product, listproduct);
+        List<Product> updatedList = productmanager.ListProducts();
+
+        Assert.DoesNotContain(removedProduct, updatedList);
     }
 
     [Fact]
@@ -65,6 +76,10 @@ namespace Bangazon.Managers.Tests
     // [Fact]
     // public void UpdateProduct()
     // {
+
+    //     // Pass in Properties
+
+
     //     ProductManager productmanager = new ProductManager();
     //     productmanager.Add(_product);
     //     // productmanager.UpdateSingleProduct(_product);
@@ -73,6 +88,5 @@ namespace Bangazon.Managers.Tests
     //     Assert.Equal(singleProduct.Title, "Motorcycle");
     // }
  }
-
 
 }
