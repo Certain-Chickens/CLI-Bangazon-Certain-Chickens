@@ -21,6 +21,5 @@ namespace Bangazon
         {
             return _orderProductTable;
         }
-
     }
 }
