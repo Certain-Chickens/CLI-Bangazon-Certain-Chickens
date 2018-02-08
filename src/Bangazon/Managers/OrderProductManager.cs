@@ -21,6 +21,5 @@ namespace Bangazon.Managers
         {
             return _orderProductTable;
         }
-
     }
 }

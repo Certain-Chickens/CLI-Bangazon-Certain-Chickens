@@ -51,6 +51,9 @@ namespace Bangazon.Managers.Tests
             Assert.Contains(_customer, allCustomers);
         }
 
+        // Author: Leah Duvic
+        // Purpose: setting the customer to active customer once selected.
+
         [Fact]
         public void ActiveCustomer()
         {

@@ -22,8 +22,8 @@ namespace Bangazon.Managers.Tests
             _orderz = new Orderz(
                 1,
                 1,
-                1,
-                "2017-12-01"
+                0,
+                ""
             );
         }
         [Fact]
@@ -50,6 +50,20 @@ namespace Bangazon.Managers.Tests
             List<Orderz> allOrderz = manager.ListOrderz();
 
             Assert.Contains(_orderz, allOrderz);
+        }
+        
+        // Author: Leah Duvic and Greg Turner
+        // Purpose: Completing customer order by adding the payment type.
+
+        [Fact]
+        public void CompleteOrderz()
+        {
+            OrderManager manager = new OrderManager();
+            manager.Add(_orderz);
+            Orderz complete = manager.CompleteOrderz(1, 1, "2017-12-01");
+
+            Assert.Equal(1, complete.PaymentTypeId);
+            Assert.Equal("2017-12-01", complete.DateCompleted);
         }
     }
 }
