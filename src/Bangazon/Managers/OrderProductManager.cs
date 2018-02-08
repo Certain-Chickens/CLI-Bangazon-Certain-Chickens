@@ -11,11 +11,19 @@ namespace Bangazon
     public class OrderProductManager
     {
         private List<OrderProduct> _orderProductTable = new List<OrderProduct>();
+        private OrderProduct _orderProduct = new OrderProduct
+        (
+            0,
+            0,
+            0
+        );
 
-
-        public void Add(OrderProduct lineItem)
+        public void Add(int orderId, int productId)
         {
-            _orderProductTable.Add(lineItem);
+            _orderProduct.OrderzId = orderId;
+            _orderProduct.ProductId = productId; 
+            _orderProductTable.Add(_orderProduct);
+
         }
         public List<OrderProduct> ListOrderProduct()
         {
