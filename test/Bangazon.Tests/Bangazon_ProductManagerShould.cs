@@ -3,7 +3,7 @@ using Xunit;
 using Bangazon;
 using System.Collections.Generic;
 
-namespace Bangazon.Tests
+namespace Bangazon.Managers.Tests
 {
 
  public class ProductManagerShould
@@ -52,17 +52,26 @@ namespace Bangazon.Tests
     }
 
     [Fact]
-    public void UpdateProduct()
+    public void GetSingleProduct()
     {
         ProductManager productmanager = new ProductManager();
         productmanager.Add(_product);
-        List<Product> listproduct = productmanager.ListProducts();
 
-        productmanager.UpdateSingleProduct(_product);
+        Product singleProduct = productmanager.GetSingleProduct(1);
 
-        Assert.Equal(_product.ProductId, 2);
-        Assert.Equal(_product.Title, "Motorcycle");
+        Assert.Equal(singleProduct.ProductId, 1);
     }
+
+    // [Fact]
+    // public void UpdateProduct()
+    // {
+    //     ProductManager productmanager = new ProductManager();
+    //     productmanager.Add(_product);
+    //     // productmanager.UpdateSingleProduct(_product);
+    //     Product singleProduct = productmanager.GetSingleProduct(1);
+
+    //     Assert.Equal(singleProduct.Title, "Motorcycle");
+    // }
  }
 
 

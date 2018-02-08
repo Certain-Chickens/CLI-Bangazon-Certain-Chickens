@@ -3,11 +3,12 @@ using Xunit;
 using Bangazon;
 using System.Collections.Generic;
 
-namespace Bangazon.Tests
+namespace Bangazon.Managers.Tests
 {
     public class CustomerManagerShould
     {
         private Customer _customer;
+        private DatabaseConnection _db;
 
         public CustomerManagerShould()
         {
@@ -22,7 +23,7 @@ namespace Bangazon.Tests
                 "37221",
                 "6157865437"
             );
-            
+
         }
         [Fact]
         public void AddNewCustomer()
@@ -33,7 +34,7 @@ namespace Bangazon.Tests
         [Fact]
         public void GetSingleCustomer()
         {
-            CustomerManager manager = new CustomerManager();
+            CustomerManager manager = new CustomerManager(_db);
             manager.Add(_customer);
             Customer customer = manager.GetSingleCustomer(1);
 
@@ -43,17 +44,17 @@ namespace Bangazon.Tests
         [Fact]
         public void ListCustomers()
         {
-            CustomerManager manager = new CustomerManager();
+            CustomerManager manager = new CustomerManager(_db);
             manager.Add(_customer);
             List<Customer> allCustomers = manager.ListCustomers();
 
             Assert.Contains(_customer, allCustomers);
         }
-        
+
         [Fact]
         public void ActiveCustomer()
         {
-            CustomerManager manager = new CustomerManager();
+            CustomerManager manager = new CustomerManager(_db);
             manager.Add(_customer);
             var activeCustomer = manager.ActiveCustomer(1);
 
