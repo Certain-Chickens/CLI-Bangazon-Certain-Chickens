@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-/*  
+/*
     Author: Greg Turner
     Purpose: OrderProduct manager methods for OrderProduct data manipluation
 */
 
-namespace Bangazon
+namespace Bangazon.Managers
 {
     public class OrderProductManager
     {

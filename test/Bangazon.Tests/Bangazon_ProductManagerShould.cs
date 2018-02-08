@@ -3,12 +3,13 @@ using Xunit;
 using Bangazon;
 using System.Collections.Generic;
 
-namespace Bangazon.Tests
+namespace Bangazon.Managers.Tests
 {
 
  public class ProductManagerShould
  {
       private Product _product;
+      private Product _product2;
 
     public ProductManagerShould() {
          _product = new Product(
@@ -19,6 +20,15 @@ namespace Bangazon.Tests
             "Blue Bike",
             2.00,
             2
+        );
+        _product2 = new Product(
+            2,
+            1,
+            1,
+            "Horse",
+            "Blue Horse",
+            3.00,
+            4
         );
 
     }
@@ -44,25 +54,39 @@ namespace Bangazon.Tests
     {
         ProductManager productmanager = new ProductManager();
         productmanager.Add(_product);
-        List<Product> listproduct = productmanager.ListProducts();
 
-        productmanager.RemoveSingleProduct(_product);
+        Product removedProduct = productmanager.RemoveSingleProduct(1);
 
-        Assert.DoesNotContain(_product, listproduct);
+        List<Product> updatedList = productmanager.ListProducts();
+
+        Assert.DoesNotContain(removedProduct, updatedList);
     }
 
     [Fact]
-    public void UpdateProduct()
+    public void GetSingleProduct()
     {
         ProductManager productmanager = new ProductManager();
         productmanager.Add(_product);
-        List<Product> listproduct = productmanager.ListProducts();
 
-        productmanager.UpdateSingleProduct(_product);
+        Product singleProduct = productmanager.GetSingleProduct(1);
 
-        Assert.Equal(_product.ProductId, 2);
+        Assert.Equal(singleProduct.ProductId, 1);
     }
- }
 
+    // [Fact]
+    // public void UpdateProduct()
+    // {
+
+    //     // Pass in Properties
+
+
+    //     ProductManager productmanager = new ProductManager();
+    //     productmanager.Add(_product);
+    //     // productmanager.UpdateSingleProduct(_product);
+    //     Product singleProduct = productmanager.GetSingleProduct(1);
+
+    //     Assert.Equal(singleProduct.Title, "Motorcycle");
+    // }
+ }
 
 }
