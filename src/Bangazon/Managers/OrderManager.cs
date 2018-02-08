@@ -10,8 +10,14 @@ namespace Bangazon
 {
     public class OrderManager
     {
+        // private Orderz _orderz = new Orderz
+        // (
+        //     1,
+        //     1,
+        //     0,
+        //     ""
+        // );
         private List<Orderz> _orderzTable = new List<Orderz>();
-
 
         public void Add(Orderz ticket)
         {
@@ -30,12 +36,16 @@ namespace Bangazon
         // Author: Leah Duvic and Greg Turner
         // Purpose: Completing customer order by adding the payment type.
         
-        public Orderz CompleteOrderz(Orderz orderz, int payment, string dateCompleted)
+        public Orderz CompleteOrderz(int OrderId, int paymentTypeId, string dateCompleted)
         {   
-            var completeOrderz = orderz;
-            completeOrderz.PaymentTypeId = payment;
+            // _orderzTable.Add(_orderz);
+            var completeOrderz = GetSingleOrderz(OrderId);
+            var x = _orderzTable.IndexOf(completeOrderz);
+            completeOrderz.PaymentTypeId = paymentTypeId;
             completeOrderz.DateCompleted = dateCompleted;
-            return completeOrderz; 
+            _orderzTable[x] = completeOrderz;
+            Console.WriteLine(_orderzTable);
+            return _orderzTable[x]; 
         }
 
     }

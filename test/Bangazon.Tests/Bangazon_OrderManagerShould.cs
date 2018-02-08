@@ -59,7 +59,7 @@ namespace Bangazon.Tests
         {
             OrderManager manager = new OrderManager();
             manager.Add(_orderz);
-            Orderz complete = manager.CompleteOrderz(_orderz, 1, "2017-12-01");
+            Orderz complete = manager.CompleteOrderz(1, 1, "2017-12-01");
 
             Assert.Equal(1, complete.PaymentTypeId);
             Assert.Equal("2017-12-01", complete.DateCompleted);
