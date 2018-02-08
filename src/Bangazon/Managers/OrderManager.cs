@@ -27,5 +27,16 @@ namespace Bangazon
             return _orderzTable;
         }
 
+        // Author: Leah Duvic and Greg Turner
+        // Purpose: Completing customer order by adding the payment type.
+        
+        public Orderz CompleteOrderz(Orderz orderz, int payment, string dateCompleted)
+        {   
+            var completeOrderz = orderz;
+            completeOrderz.PaymentTypeId = payment;
+            completeOrderz.DateCompleted = dateCompleted;
+            return completeOrderz; 
+        }
+
     }
 }

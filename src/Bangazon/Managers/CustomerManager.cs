@@ -22,6 +22,9 @@ namespace Bangazon
             return _customerTable;
         }
 
+        // Author: Leah Duvic
+        // Purpose: setting the customer to active customer once selected.
+        
         public Customer ActiveCustomer (int Id)
         {   
             var activeCustomer = GetSingleCustomer(Id);
