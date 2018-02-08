@@ -2,17 +2,18 @@ using System;
 using Xunit;
 using Bangazon;
 using System.Collections.Generic;
-/*  
+/*
     Author: Greg Turner
     Purpose: Testing Orderz manager methods
 */
 
-namespace Bangazon.Tests
+namespace Bangazon.Managers.Tests
 
 {
     public class OrderManagerShould
     {
         private Orderz _orderz;
+        // private DatabaseConnection _db;
 
         public OrderManagerShould()
         {
