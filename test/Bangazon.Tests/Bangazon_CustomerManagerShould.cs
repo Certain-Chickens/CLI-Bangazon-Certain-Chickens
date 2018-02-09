@@ -17,7 +17,7 @@ namespace Bangazon.Managers.Tests
         public CustomerManagerShould()
         {
             //Find path to database
-            string prodPath = System.Environment.GetEnvironmentVariable("BANGAZON_CLI_DB");
+            string prodPath = System.Environment.GetEnvironmentVariable("BANGAZON_TEST_DB");
             DatabaseConnection db = new DatabaseConnection(prodPath);
             _db = db;
             _cm = new CustomerManager(_db);
@@ -41,13 +41,13 @@ namespace Bangazon.Managers.Tests
             DatabaseStartup databaseStartup = new DatabaseStartup(_db);
             Customer person = new Customer();
 
-                person.Name = "NOOO NO"; 
-                person.Address = "5050 Itunes Ln"; 
-                person.City= "Nashville"; 
-                person.State= "Georgia"; 
-                person.PostalCode= "44145"; 
+                person.Name = "NOOO NO";
+                person.Address = "5050 Itunes Ln";
+                person.City= "Nashville";
+                person.State= "Georgia";
+                person.PostalCode= "44145";
                 person.Phone="440-111-4444";
-            
+
             var result = _cm.AddNewCustomer(person);
 
             Assert.True(result != 0);
