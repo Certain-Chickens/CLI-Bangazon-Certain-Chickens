@@ -41,27 +41,28 @@ namespace Bangazon.Managers.Tests
             DatabaseStartup databaseStartup = new DatabaseStartup(_db);
             Customer person = new Customer();
 
-                person.Name = "NOOO NO"; 
-                person.Address = "5050 Itunes Ln"; 
-                person.City= "Nashville"; 
-                person.State= "Georgia"; 
-                person.PostalCode= "44145"; 
+                person.Name = "NOOO NO";
+                person.Address = "5050 Itunes Ln";
+                person.City= "Nashville";
+                person.State= "Georgia";
+                person.PostalCode= "44145";
                 person.Phone="440-111-4444";
-            
+
             var result = _cm.AddNewCustomer(person);
 
             Assert.True(result != 0);
         }
 
-        // [Fact]
-        // public void GetSingleCustomer()
-        // {
-        //     CustomerManager manager = new CustomerManager();
-        //     manager.Add(_customer);
-        //     Customer customer = manager.GetSingleCustomer(1);
+        [Fact]
+        public void GetSingleCustomer()
+        {
+            DatabaseStartup databaseStartup = new DatabaseStartup(_db);
+            Customer person = new Customer();
 
-        //     Assert.Equal(customer.Id, 1);
-        // }
+            var result = _cm.GetSingleCustomer(1);
+
+            Assert.Equal(result, 1);
+        }
 
         // [Fact]
         // public void ListCustomers()
