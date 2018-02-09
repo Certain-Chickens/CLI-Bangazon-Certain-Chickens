@@ -18,8 +18,7 @@ namespace Bangazon
             this.AddOrderzTable();
             this.AddProductTable();
             this.AddPaymentTypeTable();
-            this.AddCustomerTable();
-            this.AddCustomerTable();
+            this.AddProductTypeTable();
         }
 
         public void AddCustomerTable() {
