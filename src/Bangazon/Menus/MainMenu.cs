@@ -9,7 +9,7 @@ namespace Bangazon.Menus
         public int Show()
         {
 
-            Console.Clear();
+            // Console.Clear();
             // Seed the database if none exists
             // var db = new DatabaseConnection();
             // db.VerifyDataExists();
