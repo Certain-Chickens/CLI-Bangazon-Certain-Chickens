@@ -17,7 +17,7 @@ namespace Bangazon.Managers.Tests
         public CustomerManagerShould()
         {
             //Find path to database
-            string prodPath = System.Environment.GetEnvironmentVariable("BANGAZON_CLI_DB");
+            string prodPath = System.Environment.GetEnvironmentVariable("BANGAZON_TEST_DB");
             DatabaseConnection db = new DatabaseConnection(prodPath);
             _db = db;
             _cm = new CustomerManager(_db);
