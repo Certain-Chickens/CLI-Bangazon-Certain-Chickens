@@ -10,6 +10,8 @@ namespace Bangazon.Managers
     {
         private List<Customer> _customerTable = new List<Customer>();
 
+        private DatabaseConnection _db;
+
         public void Add(Customer person)
         {
             _customerTable.Add(person);
