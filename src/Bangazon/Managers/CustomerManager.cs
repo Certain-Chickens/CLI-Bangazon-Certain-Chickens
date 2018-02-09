@@ -8,14 +8,25 @@ namespace Bangazon.Managers
 {
     public class CustomerManager
     {
+        private DatabaseConnection _db;
+        public static Customer currentCustomer;
+
+        // Method to establish a connection with the database, database conenction is passed in as an argument
+        public CustomerManager(DatabaseConnection db)
+        {
+            _db = db;
+        }
+
         private List<Customer> _customerTable = new List<Customer>();
 
-        private DatabaseConnection _db;
-
-        public void Add(Customer person)
+        public int AddNewCustomer(Customer person)
         {
-            _customerTable.Add(person);
+            // _customerTable.Add(person);
+             int id = _db.Insert( $"insert into Customer values (null, '{person.Name}', '{person.Address}', '{person.City}', '{person.State}', '{person.PostalCode}', '{person.Phone}')");
+
+            return id;
         }
+
         public Customer GetSingleCustomer (int Id)
         {
             return _customerTable.Where(c => c.Id == Id).Single();
@@ -33,7 +44,7 @@ namespace Bangazon.Managers
         {
             var activeCustomer = GetSingleCustomer(Id);
             return activeCustomer;
-        }
+           }
 
     }
 }
