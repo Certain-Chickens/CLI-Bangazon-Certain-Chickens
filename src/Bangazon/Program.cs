@@ -1,6 +1,7 @@
 ﻿using System;
 using Bangazon;
 using Bangazon.Menus;
+using Bangazon.Managers;
 
 namespace Bangazon
 {
@@ -12,14 +13,13 @@ namespace Bangazon
             string prodPath = System.Environment.GetEnvironmentVariable("BANGAZON_CLI_DB");
             DatabaseConnection db = new DatabaseConnection(prodPath);
 
-            Managers.CustomerManager customerManager = new Managers.CustomerManager(db);
-            // Managers.ProductManager productManager = new Managers.ProductManager(db);
-
+            DatabaseStartup databaseStartup = new DatabaseStartup(db);
             MainMenu menu = new MainMenu();
 
             int choice;
             // When the user enters the system show the main menu
             do {
+
                 choice = menu.Show();
 
             // switch (choice)
@@ -30,7 +30,7 @@ namespace Bangazon
 
             }
             while (choice != 9);
-            menu.Show()
-;        }
+            menu.Show();
+        }
     }
 }

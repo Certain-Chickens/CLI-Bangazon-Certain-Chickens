@@ -13,7 +13,7 @@ namespace Bangazon
         // Variable to store the connection to the database. Passes _connectionString as an argument
         private SqliteConnection _connection;
 
-        // Method to extract the developers environment variable holding the BANGAZON_CLI_APP_DB.db filepath
+        // Method to extract the developers environment variable holding the BANGAZON_CLI_DB.db filepath
         public DatabaseConnection(string path)
         {
             try {

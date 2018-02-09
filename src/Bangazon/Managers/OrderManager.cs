@@ -35,9 +35,9 @@ namespace Bangazon.Managers
 
         // Author: Leah Duvic and Greg Turner
         // Purpose: Completing customer order by adding the payment type.
-        
+
         public Orderz CompleteOrderz(int OrderId, int paymentTypeId, string dateCompleted)
-        {   
+        {
             // _orderzTable.Add(_orderz);
             var completeOrderz = GetSingleOrderz(OrderId);
             var x = _orderzTable.IndexOf(completeOrderz);
@@ -45,7 +45,7 @@ namespace Bangazon.Managers
             completeOrderz.DateCompleted = dateCompleted;
             _orderzTable[x] = completeOrderz;
             Console.WriteLine(_orderzTable);
-            return _orderzTable[x]; 
+            return _orderzTable[x];
         }
 
     }
