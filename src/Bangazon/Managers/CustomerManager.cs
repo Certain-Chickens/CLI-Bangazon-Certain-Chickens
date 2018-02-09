@@ -9,29 +9,6 @@ namespace Bangazon.Managers
     public class CustomerManager
     {
         private List<Customer> _customerTable = new List<Customer>();
-        private DatabaseConnection _db;
-
-        public CustomerManager(DatabaseConnection db)
-        {
-            _db = db;
-            this.AddCustomerTable();
-        }
-
-        private void AddCustomerTable() {
-            try {
-                _db.Update(@"CREATE TABLE IF NOT EXISTS `Customer` (
-                    `Id` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `Name` TEXT NOT NULL,
-                    `Address` TEXT NOT NULL,
-                    `City` TEXT NOT NULL,
-                    `State` TEXT NOT NULL,
-                    `PostalCode` TEXT NOT NULL,
-                    `Phone` TEXT NOT NULL);
-                ");
-            } catch (Exception ex) {
-                Console.WriteLine("CreateCustomerTable", ex.Message);
-            }
-        }
 
         public void Add(Customer person)
         {
@@ -49,7 +26,7 @@ namespace Bangazon.Managers
 
         // Author: Leah Duvic
         // Purpose: setting the customer to active customer once selected.
-        
+
         public Customer ActiveCustomer (int Id)
         {
             var activeCustomer = GetSingleCustomer(Id);

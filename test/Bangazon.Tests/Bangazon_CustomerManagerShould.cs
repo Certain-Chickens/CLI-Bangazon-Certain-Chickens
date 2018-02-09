@@ -34,7 +34,7 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void GetSingleCustomer()
         {
-            CustomerManager manager = new CustomerManager(_db);
+            CustomerManager manager = new CustomerManager();
             manager.Add(_customer);
             Customer customer = manager.GetSingleCustomer(1);
 
@@ -44,7 +44,7 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void ListCustomers()
         {
-            CustomerManager manager = new CustomerManager(_db);
+            CustomerManager manager = new CustomerManager();
             manager.Add(_customer);
             List<Customer> allCustomers = manager.ListCustomers();
 
@@ -57,7 +57,7 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void ActiveCustomer()
         {
-            CustomerManager manager = new CustomerManager(_db);
+            CustomerManager manager = new CustomerManager();
             manager.Add(_customer);
             var activeCustomer = manager.ActiveCustomer(1);
 
