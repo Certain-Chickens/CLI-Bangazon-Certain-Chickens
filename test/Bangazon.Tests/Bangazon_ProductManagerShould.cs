@@ -35,7 +35,7 @@ namespace Bangazon.Managers.Tests
 
             _productManager = new ProductManager(_db);
             _product = new Product();
-            _product.ProductTypeId = 1;
+            _product.ProductType = "transpotation";
             _product.CustomerId = 1;
             _product.Title = "Bike";
             _product.Description = "Blue Bike";
@@ -44,7 +44,7 @@ namespace Bangazon.Managers.Tests
             _product.DateCreated = DateTime.Now;
 
             _product2 = new Product();
-            _product2.ProductTypeId = 1;
+            _product2.ProductType = "transportation";
             _product2.CustomerId = 1;
             _product2.Title = "Horse";
             _product2.Description = "Blue Horse";

@@ -18,7 +18,7 @@ namespace Bangazon.Managers
 
         public int Add(Product product)
         {
-            int id = _db.Insert( $"insert into Product values (null, '{product.ProductTypeId}', '{product.CustomerId}','{product.Title}','{product.Description}','{product.Price}','{product.Quantity}','{product.DateCreated}')");
+            int id = _db.Insert( $"insert into Product values (null, '{product.ProductType}', '{product.CustomerId}','{product.Title}','{product.Description}','{product.Price}','{product.Quantity}','{product.DateCreated}')");
 
             return id;
         }
