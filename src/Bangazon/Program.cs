@@ -29,6 +29,12 @@ namespace Bangazon
                 // Displays the Create Customer Menu
                 CreateCustomer.CreateCustomerMenu(cm);
                 break;
+
+                case 2:
+                //Displays list of customers, so the user can select which one is active. 
+                ActiveCustomer.SelectActiveCustomer(cm);
+                break;
+
             }
 
             }
