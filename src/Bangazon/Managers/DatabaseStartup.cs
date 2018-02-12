@@ -56,7 +56,7 @@ namespace Bangazon
                 _db.Update(@"CREATE TABLE IF NOT EXISTS `PaymentType` (
                     `PaymentTypeId` INTEGER PRIMARY KEY AUTOINCREMENT,
                     `Name` TEXT NOT NULL,
-                    `AccountNumber` TEXT NOT NULL);
+                    `AccountNumber` INT NOT NULL);
                 ");
             } catch (Exception ex) {
                 Console.WriteLine("AddPaymentTypeTable", ex.Message);
