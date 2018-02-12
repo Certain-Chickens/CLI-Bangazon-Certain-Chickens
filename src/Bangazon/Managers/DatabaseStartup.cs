@@ -66,12 +66,13 @@ namespace Bangazon
             try {
                 _db.Update(@"CREATE TABLE IF NOT EXISTS `Product` (
                     `ProductId` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `ProductTypeId` INT NOT NULL,
+                    `ProductType` TEXT NOT NULL,
                     `CustomerId` INT NOT NULL,
                     `Title` TEXT NOT NULL,
                     `Description` TEXT NOT NULL,
                     `Price` DOUBLE NOT NULL,
-                    `Quanitity` INT NOT NULL);
+                    `Quantity` INT NOT NULL,
+                    `DateCreated` varchar(80) NOT NULL); 
                 ");
             } catch (Exception ex) {
                 Console.WriteLine("AddProductTable", ex.Message);
