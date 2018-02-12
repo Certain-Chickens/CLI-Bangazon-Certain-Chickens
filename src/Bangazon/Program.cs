@@ -15,6 +15,7 @@ namespace Bangazon
 
             DatabaseStartup databaseStartup = new DatabaseStartup(db);
             MainMenu menu = new MainMenu();
+            CustomerManager cm = new CustomerManager(db);
 
             int choice;
             // When the user enters the system show the main menu
@@ -22,11 +23,13 @@ namespace Bangazon
 
                 choice = menu.Show();
 
-            // switch (choice)
-            // {
-            //     // case 1:
-            //     // CreateCustomerMenu
-            // }
+            switch (choice)
+            {
+                case 1:
+                // Displays the Create Customer Menu
+                CreateCustomer.CreateCustomerMenu(cm);
+                break;
+            }
 
             }
             while (choice != 9);

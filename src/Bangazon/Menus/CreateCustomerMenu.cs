@@ -9,34 +9,50 @@ namespace Bangazon.Menus
         public static void CreateCustomerMenu(CustomerManager cm){
 
             Console.Clear();
-            Console.WriteLine ("Enter customer first name");
+            Console.WriteLine ("Enter customer Full Name");
             Console.Write ("> ");
-            string firstName = Console.ReadLine();
+            string name = Console.ReadLine();
 
             Console.Clear();
-            Console.WriteLine ("Enter customer last name");
+            Console.WriteLine ("Enter customer Address");
             Console.Write ("> ");
+            string address = Console.ReadLine();
 
             Console.Clear();
-            string lastName = Console.ReadLine();
-            Console.WriteLine ("Enter customer city");
+            Console.WriteLine ("Enter customer City");
             Console.Write ("> ");
-
-            Console.Clear();
             string city = Console.ReadLine();
-            Console.WriteLine ("Enter customer state");
-            Console.Write ("> ");
 
             Console.Clear();
+            Console.WriteLine ("Enter customer State");
+            Console.Write ("> ");
             string state = Console.ReadLine();
-            Console.WriteLine ("Enter customer postal code");
-            Console.Write ("> ");
 
             Console.Clear();
+            Console.WriteLine ("Enter customer Zip Code");
+            Console.Write ("> ");
             string postalCode = Console.ReadLine();
+
+            Console.Clear();
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
+
+                Customer person = new Customer()
+                {
+                    Name = name,
+                    Address = address,
+                    City = city,
+                    State = state,
+                    PostalCode = postalCode,
+                    Phone = phoneNumber
+                };
+            cm.AddNewCustomer(person);
+
+            Console.Clear();
+            Console.WriteLine($"gg, {person.Name} is now in the Bangazon System");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
         }
     }
 }
