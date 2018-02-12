@@ -70,9 +70,9 @@ namespace Bangazon.Managers
         // Author: Leah Duvic
         // Purpose: setting the customer to active customer once selected.
 
-        public Customer ActiveCustomer (int Id)
+        public Customer ActiveCustomer (int customerId)
         {
-            var activeCustomer = GetSingleCustomer(Id);
+            var activeCustomer = GetSingleCustomer(customerId);
             return activeCustomer;
         }
 
