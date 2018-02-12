@@ -4,6 +4,7 @@ using Xunit;
 using Bangazon;
 using Bangazon.Managers;
 using Microsoft.Data.Sqlite;
+using Microsoft.Win32.SafeHandles;
 /*
 Author: Greg Turner
 Purpose: Testing Orderz manager methods
@@ -12,7 +13,7 @@ Purpose: Testing Orderz manager methods
 namespace Bangazon.Managers.Tests
 
 {
-    public class OrderManagerShould
+    public class OrderManagerShould : IDisposable
     {
         // Private Orderz variables _orderz, _orderz2 and _orders3 to be used in the tests
         private Orderz _orderz;
@@ -26,6 +27,22 @@ namespace Bangazon.Managers.Tests
         private OrderManager _orderManager;
         // Private DatabaseConnection variable _db to be used in the tests;
         private DatabaseConnection _db;
+        /*  Method to clear the Orderz table from the Test database that will be 
+            called by Dispose method */
+        public void Dispose()
+        {
+            // Clear any data Orderz table in the test database
+            _db.Update($"DELETE FROM Orderz;");
+            _db.Update($"DROP TABLE IF EXISTS Orderz;");
+            // Add new Orderz table to test database
+            _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
+                    `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
+                    `CustomerId` INT NOT NULL,
+                    `PaymentTypeId` INT,
+                    `DateCreated` varchar(80) NOT NULL);
+                    ");
+        }
+
         public OrderManagerShould()
         {
             // Set string variable prodPath to contain the path to the test database
@@ -65,16 +82,6 @@ namespace Bangazon.Managers.Tests
         */
         public void AddNewOrderz()
         { 
-            // Clear any data Orderz table in the test database then drop it for pristine testing
-            _db.Update($"DELETE FROM Orderz;");
-            _db.Update($"DROP TABLE IF EXISTS Orderz;");
-            // Add new Orderz table to test database
-            _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
-                    `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `CustomerId` INT NOT NULL,
-                    `PaymentTypeId` INT,
-                    `DateCreated` varchar(80) NOT NULL);
-                ");
             /*  Send the new _orderz to the AddNewOrderz method and capture the return 
                 in the variable named result */
             var result = _orderManager.AddNewOrderz(_orderz);
@@ -89,16 +96,6 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void GetSingleOrderz()
         {
-            // Clear any data Orderz table in the test database then drop it for pristine testing
-            _db.Update($"DELETE FROM Orderz;");
-            _db.Update($"DROP TABLE IF EXISTS Orderz;");
-            // Add new Orderz table to test database
-            _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
-                    `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `CustomerId` INT NOT NULL,
-                    `PaymentTypeId` INT,
-                    `DateCreated` varchar(80) NOT NULL);
-                ");
             /*  Send the new _orderz to the AddNewOrderz method and capture the return 
                 in the variable named result */
             _orderManager.AddNewOrderz(_orderz);
@@ -115,16 +112,6 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void ListCompletedCustomerOrderz()
         {
-            // Clear any data Orderz table in the test database then drop it for pristine testing
-            _db.Update($"DELETE FROM Orderz;");
-            _db.Update($"DROP TABLE IF EXISTS Orderz;");
-            // Add new Orderz table to test database
-            _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
-                    `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `CustomerId` INT NOT NULL,
-                    `PaymentTypeId` INT,
-                    `DateCreated` varchar(80) NOT NULL);
-                ");
             //  Call AddNewOrderz method to add the 3 new Orderz to the Orderz table
             _orderManager.AddNewOrderz(_orderz);
             _orderManager.AddNewOrderz(_orderz2);
@@ -157,21 +144,11 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void CompleteOrderz()
         {
-            // Clear any data Orderz table in the test database then drop it for pristine testing
-            _db.Update($"DELETE FROM Orderz;");
-            _db.Update($"DROP TABLE IF EXISTS Orderz;");
-            // Add new Orderz table to test database
-            _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
-                    `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
-                    `CustomerId` INT NOT NULL,
-                    `PaymentTypeId` INT,
-                    `DateCreated` varchar(80) NOT NULL);
-                ");
-            // Add the new Orderz to the POrderz table in the test database
+            // Add the new Orderz to the Orderz table in the test database
             _orderManager.AddNewOrderz(_orderz2);
             // Capture the returned updated Orderz in the variable result
             var result = _orderManager.CompleteOrderz(1, 1);
-            // Test the PaymentTyypeId in the Orderz is now 1
+            // Test the PaymentTypeId in the Orderz is now 1
             Assert.Equal(1, result.PaymentTypeId);
         }
     }
