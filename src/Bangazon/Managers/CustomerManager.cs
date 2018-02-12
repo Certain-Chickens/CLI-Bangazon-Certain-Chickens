@@ -27,7 +27,7 @@ namespace Bangazon.Managers
             return id;
         }
 
-        public int GetSingleCustomer (int customerId)
+        public Customer GetSingleCustomer (int customerId)
         {
             // return _customerTable.Where(c => c.Id == Id).Single();
             Customer singleCustomer = new Customer();
@@ -42,22 +42,39 @@ namespace Bangazon.Managers
                 singleCustomer.Phone = reader[6].ToString();
                 }
             });
-            return singleCustomer.Id;
+            return singleCustomer;
         }
 
         public List<Customer> ListCustomers ()
         {
-            return _customerTable;
+            // return _customerTable;
+
+            List<Customer> AllCustomers = new List<Customer>();
+
+            _db.Query($"SELECT * FROM Customer", (SqliteDataReader reader) => {
+                while (reader.Read()){
+                    AllCustomers.Add(new Customer(){
+                    Id = reader.GetInt32(0),
+                    Name = reader[1].ToString(),
+                    Address = reader[2].ToString(),
+                    City = reader[3].ToString(),
+                    State = reader[4].ToString(),
+                    PostalCode = reader[5].ToString(),
+                    Phone = reader[6].ToString()
+                    });
+                }
+            });
+            return AllCustomers;
         }
 
         // Author: Leah Duvic
         // Purpose: setting the customer to active customer once selected.
 
-        public int ActiveCustomer (int Id)
+        public Customer ActiveCustomer (int Id)
         {
             var activeCustomer = GetSingleCustomer(Id);
             return activeCustomer;
-           }
+        }
 
     }
 }
