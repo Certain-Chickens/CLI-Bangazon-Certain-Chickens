@@ -42,8 +42,8 @@ namespace Bangazon
                 _db.Update(@"CREATE TABLE IF NOT EXISTS `Orderz` (
                     `OrderId` INTEGER PRIMARY KEY AUTOINCREMENT,
                     `CustomerId` INT NOT NULL,
-                    `PaymentTypeId` INT NOT NULL,
-                    `DateCompleted` TEXT NOT NULL);
+                    `PaymentTypeId` INT,
+                    `DateCreated` varchar(80) NOT NULL);
                 ");
             } catch (Exception ex) {
                 Console.WriteLine("AddOrderzTable", ex.Message);
