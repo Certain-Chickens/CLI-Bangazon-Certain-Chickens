@@ -31,7 +31,6 @@ namespace Bangazon.Managers
         // public Product RemoveSingleProduct(int id)
         // {
         //     var singleProduct = GetSingleProduct(id);
-        //     var y = _productList.IndexOf(singleProduct);
 
         //     _productList.RemoveAt(y);
         //     return singleProduct;

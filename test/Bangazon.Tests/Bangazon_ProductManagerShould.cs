@@ -94,10 +94,10 @@ namespace Bangazon.Managers.Tests
         {
             /*  Send the new _orderz to the AddNewOrderz method and capture the return 
                 in the variable named result */
-            _productManager.Add(_product);
-            var result = _productManager.GetSingleProduct(1);
+            var testerId = _productManager.Add(_product);
+            var result = _productManager.GetSingleProduct(testerId);
             //  Assert that the returned DateCreated captured within return will not be 0
-            Assert.Equal(1, result.CustomerId);
+            Assert.Equal(testerId, result.ProductId);
         }
 
         // [Fact]
