@@ -27,19 +27,22 @@ namespace Bangazon.Managers.Tests
 
             // Ensure there is a database with tables at the end of the test database connection
             DatabaseStartup databaseStartup = new DatabaseStartup(_db);
+
+
+             _person1 = new Customer();
+                _person1.Name = "Brian";
+                _person1.Address = "5050 Itunes Ln";
+                _person1.City= "Nashville";
+                _person1.State= "Georgia";
+                _person1.PostalCode= "44145";
+                _person1.Phone="440-111-4444";
         }
 
         [Fact]
         public void AddNewCustomer()
         {
-            Customer person1 = new Customer();
-                person1.Name = "Brian";
-                person1.Address = "5050 Itunes Ln";
-                person1.City= "Nashville";
-                person1.State= "Georgia";
-                person1.PostalCode= "44145";
-                person1.Phone="440-111-4444";
-            var result = _cm.AddNewCustomer(person1);
+
+            var result = _cm.AddNewCustomer(_person1);
 
             Assert.True(result != 0);
         }
@@ -47,8 +50,11 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void GetSingleCustomer()
         {
-            var result = _cm.GetSingleCustomer(1);
-            Assert.Equal(result.Id, 1);
+
+            var newCustomer =  _cm.AddNewCustomer(_person1);
+            var result = _cm.GetSingleCustomer(newCustomer);
+
+            Assert.Equal(newCustomer, result.Id);
 
         }
 
@@ -97,9 +103,10 @@ namespace Bangazon.Managers.Tests
                 _person4.Phone="736-111-4433";
             _cm.AddNewCustomer(_person4);
 
-            var activeCustomer = _cm.ActiveCustomer(3);
+            var singleCustomer = _cm.GetSingleCustomer(1);
+            var activeCustomer = _cm.ActiveCustomer(1);
 
-            Assert.Equal(activeCustomer.Name, "Hank");
+            Assert.Equal(activeCustomer.Id, singleCustomer.Id);
         }
     }
 }
