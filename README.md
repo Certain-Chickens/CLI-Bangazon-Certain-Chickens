@@ -1,10 +1,22 @@
-# Bangazon
+# Bangazon-Certain-Chickens
+Welcome to Bangazon!  
+## Getting Started
+- To begin, please clone our repository ```git@github.com:Certain-Chickens/CLI-Bangazon-Certain-Chickens.git```
+- Run a ```dotnet restore``` in your terminal to install any missing dependencies
+- Open up your command shell file and create two export paths to your database.  One for tests and one for Production  Here is mine as an example: ```/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon/BANGAZON_CLI_DB.db ```
+``` export BANGAZON_CLI_DB="/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon.Tests/BANGAZON_TEST_DB.db```
+- ```dotnet run ``` in your terminal in the src/Bangazon path to open up the CLI
 
-## The Command Line Ordering System
+## Required Software
+- .XUNIT [http://xunit.github.io/docs/getting-started-dotnet-core]
+- DB Browser for SQlight [http://sqlitebrowser.org/]
 
-In this group project, you will be allowing a user to interact with a basic product ordering database via a command line interface.
+## Entity Relationship Diagram
+- Our ERD defining our database structure
+![alt text](http://i67.tinypic.com/jv28er.png)
 
-## Ordering System Interface
+
+
 
 ### Main Menu
 
@@ -27,9 +39,9 @@ In this group project, you will be allowing a user to interact with a basic prod
 >
 ```
 
-## Requirements
-
-You will create a series of prompts that will allow the user to create various types of data in your ordering system.
-
-1. Start with writing unit tests. As a group, determine the core functionality of the application. Define classes and methods that you think you need to build. Do that before writing the implementation code for core logic. DO NOT WRITE TESTS FOR THE USER INTERFACE (menu and prompts).
-1. All classes and methods must be fully documented.
+## Contributors 
+<a href="https://github.com/mmcpher2" target="_blank"> <img src="https://avatars0.githubusercontent.com/u/32435000?s=400&v=4" width="100px"></a> 
+<a href="https://github.com/Greg-Turner" target="_blank"> <img src="https://avatars3.githubusercontent.com/u/31353577?s=460&v=4" width="100px"></a>
+<a href="https://github.com/leahduvic" target="_blank"> <img src="https://avatars3.githubusercontent.com/u/32464818?s=460&v=4" width="100px"></a>
+<a href="https://github.com/MidbossK" target="_blank"> <img src="https://avatars2.githubusercontent.com/u/31857691?s=460&v=4" width="100px"></a>
+<a href="https://github.com/kghaggerty" target="_blank"> <img src="https://avatars1.githubusercontent.com/u/31331361?s=460&v=4" width="100px"></a>
