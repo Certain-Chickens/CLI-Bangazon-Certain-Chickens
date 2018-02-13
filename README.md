@@ -3,8 +3,8 @@ Welcome to Bangazon!
 ## Getting Started
 - To begin, please clone our repository ```git@github.com:Certain-Chickens/CLI-Bangazon-Certain-Chickens.git```
 - Run a ```dotnet restore``` in your terminal to install any missing dependencies
-- Open up your command shell file and create two export paths to your database.  One for tests and one for Production  Here is mine as an example: ```/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon/BANGAZON_CLI_DB.db ```
-``` export BANGAZON_CLI_DB="/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon.Tests/BANGAZON_TEST_DB.db```
+- Open up your command shell file and create two export paths to your database.  One for tests and one for Production  Here is mine as an example: ```/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon/BANGAZON_CLI_DB.db```
+```export BANGAZON_CLI_DB="/Users/KevinHaggerty/workspace/csharp/CLI-Bangazon-Certain-Chickens/test/Bangazon.Tests/BANGAZON_TEST_DB.db```
 - ```dotnet run ``` in your terminal in the src/Bangazon path to open up the CLI
 
 ## Required Software
