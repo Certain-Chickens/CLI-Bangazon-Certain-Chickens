@@ -101,10 +101,11 @@ namespace Bangazon.Managers.Tests
                 _person4.State= "California";
                 _person4.PostalCode= "0987";
                 _person4.Phone="736-111-4433";
-            _cm.AddNewCustomer(_person4);
+            
+            var testCustomer = _cm.AddNewCustomer(_person4);
 
-            var singleCustomer = _cm.GetSingleCustomer(1);
-            var activeCustomer = _cm.ActiveCustomer(1);
+            var singleCustomer = _cm.GetSingleCustomer(testCustomer);
+            var activeCustomer = _cm.ActiveCustomer(testCustomer);
 
             Assert.Equal(activeCustomer.Id, singleCustomer.Id);
         }
