@@ -20,6 +20,7 @@ namespace Bangazon.Menus
             //storing the customer in list form -- using dictionary instead of list to not overload the foreach loop in the 'Add' method. 
             Dictionary<int, Customer> customer = new Dictionary<int, Customer>();
             Console.Clear();
+            
             int counter = 1; 
 
             //going through the list of customers and printing.
@@ -33,24 +34,21 @@ namespace Bangazon.Menus
             Console.Write ("> ");
             Console.ReadKey();
             
-            int choice = 0; 
+            int choice = 1; 
 
             // selecting the customer from the list. 
-            foreach(KeyValuePair<int, Customer> pair in customer)
+            foreach(KeyValuePair<int, Customer> kvp in customer)
             {
-                if(choice == pair.Key)
+                if(choice == kvp.Key)
                 {
                     Console.Clear();
-                    Console.WriteLine($"You selected {pair.Value.Name} in {pair.Value.City} {pair.Value.State} as the active customer");
-                    CustomerManager.currentCustomer = pair.Value;
+                    Console.WriteLine($"You selected {kvp.Value.Name} in {kvp.Value.City}, {kvp.Value.State} as the active customer");
+                    CustomerManager.currentCustomer = kvp.Value;
                     Console.WriteLine("To go back to the main menu, press any key.");
-                    // Console.WriteLine("Press any key to continue.");
-                    // if (choice == 1)
-                    // {
-                    //     Console.Clear();
-                        
-                    // }
+                
                     Console.ReadKey();
+                    Console.Clear();
+
                 }
             }
         }
