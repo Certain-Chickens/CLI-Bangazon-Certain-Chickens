@@ -28,12 +28,14 @@ namespace Bangazon.Managers.Tests
         private OrderManager _orderManager;
         // Private DatabaseConnection variable _db to be used in the tests;
         private DatabaseConnection _db;
-        /*  Method to clear the Orderz table from the Test database that will be 
-            called by Dispose method */
+        /*  Method to clear the Orderz table from the Test database. This will be 
+            called by Dispose method. */
         public void Dispose()
         {
             // Clear any data Orderz table in the test database
             _db.Update($"DELETE FROM Orderz;");
+            // Reset the Id sequence so new entries begin with 1
+            _db.Update($"DELETE FROM sqlite_sequence WHERE name='Orderz';");
         }
 
         public OrderManagerShould()
@@ -52,7 +54,7 @@ namespace Bangazon.Managers.Tests
 
 
             _orderManager = new OrderManager(_db);
-            // Create a new Orderz called ticket for test and set the properties
+            // Create a new Orderz called _orderz for test and set the properties
             _orderz = new Orderz();
                 _orderz.CustomerId = 1;
                 _orderz.PaymentTypeId = 1;
