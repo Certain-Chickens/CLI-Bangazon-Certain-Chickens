@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Bangazon.Managers;
 using Microsoft.Data.Sqlite;
-
+/*
+Original Authors: Ryan McPherson and Kevin Haggerty
+Purpose: Methods for manipulating Customer table data
+*/
 namespace Bangazon.Managers
 {
     public class CustomerManager
@@ -47,8 +50,6 @@ namespace Bangazon.Managers
 
         public List<Customer> ListCustomers ()
         {
-            // return _customerTable;
-
             List<Customer> AllCustomers = new List<Customer>();
 
             _db.Query($"SELECT * FROM Customer", (SqliteDataReader reader) => {

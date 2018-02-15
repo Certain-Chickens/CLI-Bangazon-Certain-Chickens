@@ -16,10 +16,14 @@ namespace Bangazon.Managers.Tests
         // Private DatabaseConnection variable _db to be used in the tests;
         private ProductManager _productManager;
         private DatabaseConnection _db;
+        /*  Method to clear the Product table from the Test database. This will be 
+            called by Dispose method. */
         public void Dispose()
         {
             // Clear any data Product table in the test database
             _db.Update($"DELETE FROM Product;");
+            // Reset the Id sequence so new entries begin with 1
+            _db.Update($"DELETE FROM sqlite_sequence WHERE name='Product';");
         }
 
         public ProductManagerShould()
@@ -62,19 +66,27 @@ namespace Bangazon.Managers.Tests
             /*  Send the new _product to the AddNewOrderz method and capture the return 
                 in the variable named result */
             var result = _productManager.Add(_product);
-            //  Assert that the returned OrderId captured within return will not be 0
+            //  Assert that the returned ProductId captured within return will not be 0
             Assert.True(result != 0);
         }
 
 
-        // [Fact]
-        // public void ListAllProducts()
-        // {
-        //     ProductManager productmanager = new ProductManager();
-        //     productmanager.Add(_product);
-        //     List<Product> listproduct = productmanager.ListProducts();
-        //     Assert.Contains(_product, listproduct);
-        // }
+        [Fact]
+        public void ListAllProducts()
+        {
+            int item1 = _productManager.Add(_product);
+            Product item1Full = _productManager.GetSingleProduct(item1);
+            Product sample = new Product();
+
+            List<Product> productList = _productManager.ListProducts();
+            foreach (Product p in productList){
+                if (p.ProductId == item1) {
+                    sample = p;
+                }
+            }
+            
+            Assert.Equal(item1Full.ProductId, sample.ProductId);
+        }
 
         // [Fact]
         // public void RemoveProduct()
@@ -103,14 +115,11 @@ namespace Bangazon.Managers.Tests
         // [Fact]
         // public void UpdateProduct()
         // {
-
         //     // Pass in Properties
-
-
-        //     ProductManager productmanager = new ProductManager();
-        //     productmanager.Add(_product);
+        //     var editedProduct = _productManager.Update;
+        //     productManager.Add(_product);
         //     // productmanager.UpdateSingleProduct(_product);
-        //     Product singleProduct = productmanager.GetSingleProduct(1);
+        //     Product singleProduct = productManager.GetSingleProduct(1);
 
         //     Assert.Equal(singleProduct.Title, "Motorcycle");
         // }

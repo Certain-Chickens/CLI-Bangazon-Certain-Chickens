@@ -5,15 +5,30 @@ using Bangazon;
 using Bangazon.Managers;
 using System.Linq;
 using Microsoft.Data.Sqlite;
+using Microsoft.Win32.SafeHandles;
+/*
+Original Authors: Ryan McPherson and Kevin Haggerty
+Updated By: Greg Turner
+Purpose: Testing CustomerManager methods
+*/
 
 namespace Bangazon.Managers.Tests
 {
-    public class PaymentManagerShould
+    public class PaymentManagerShould : IDisposable
     {
 
         private PaymentType paymentType;
         private DatabaseConnection _db;
         private  PaymentTypeManager _ptm;
+        /*  Method to clear the PaymentType table from the Test database. This will be 
+            called by Dispose method. */
+        public void Dispose()
+        {
+            // Clear any data PaymentType table in the test database
+            _db.Update($"DELETE FROM PaymentType;");
+            // Reset the Id sequence so new entries begin with 1
+            _db.Update($"DELETE FROM sqlite_sequence WHERE name='PaymentType';");
+        }
 
         public PaymentManagerShould()
         {

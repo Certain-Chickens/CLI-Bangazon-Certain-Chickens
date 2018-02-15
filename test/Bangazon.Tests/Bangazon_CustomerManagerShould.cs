@@ -5,18 +5,33 @@ using Bangazon;
 using Bangazon.Managers;
 using System.Linq;
 using Microsoft.Data.Sqlite;
-
+using Microsoft.Win32.SafeHandles;
+/*
+Original Authors: Ryan McPherson and Kevin Haggerty
+Updated By: Greg Turner
+Purpose: Testing CustomerManager methods
+*/
 namespace Bangazon.Managers.Tests
 {
-    public class CustomerManagerShould
+    public class CustomerManagerShould : IDisposable
     {
         private Customer _person1;
         private Customer _person2;
+        private Customer _person3;
+        private Customer _person4;
 
         private List<Customer> _allCustomers;
         private  CustomerManager _cm;
         private DatabaseConnection _db;
-
+        /*  Method to clear the Customer table from the Test database. This will be 
+            called by Dispose method. */
+        public void Dispose()
+        {
+            // Clear any data Customer table in the test database
+            _db.Update($"DELETE FROM Customer;");
+            // Reset the Id sequence so new entries begin with 1
+            _db.Update($"DELETE FROM sqlite_sequence WHERE name='Customer';");
+        }
         public CustomerManagerShould()
         {
             //Find path to database
@@ -36,32 +51,8 @@ namespace Bangazon.Managers.Tests
                 _person1.State= "Georgia";
                 _person1.PostalCode= "44145";
                 _person1.Phone="440-111-4444";
-        }
 
-        [Fact]
-        public void AddNewCustomer()
-        {
-
-            var result = _cm.AddNewCustomer(_person1);
-
-            Assert.True(result != 0);
-        }
-
-        [Fact]
-        public void GetSingleCustomer()
-        {
-
-            var newCustomer =  _cm.AddNewCustomer(_person1);
-            var result = _cm.GetSingleCustomer(newCustomer);
-
-            Assert.Equal(newCustomer, result.Id);
-
-        }
-
-        [Fact]
-        public void ListCustomers()
-        {
-            Customer _person2 = new Customer();
+            _person2 = new Customer();
                 _person2.Name = "Johnny";
                 _person2.Address = "7877 Happy Drive";
                 _person2.City= "San Fransisco";
@@ -69,7 +60,7 @@ namespace Bangazon.Managers.Tests
                 _person2.PostalCode= "90210";
                 _person2.Phone="736-111-4433";
 
-            Customer _person3 = new Customer();
+            _person3 = new Customer();
                 _person3.Id = 1;
                 _person3.Name = "Johnny";
                 _person3.Address = "7877 Happy Drive";
@@ -78,14 +69,52 @@ namespace Bangazon.Managers.Tests
                 _person3.PostalCode= "90210";
                 _person3.Phone="736-111-4433";
 
+            _person4 = new Customer();
+                _person4.Name = "Hank";
+                _person4.Address = "74 Unit way";
+                _person4.City= "Fresno";
+                _person4.State= "California";
+                _person4.PostalCode= "0987";
+                _person4.Phone="736-111-4433";
+        }
+
+        [Fact]
+        public void AddNewCustomer()
+        {
+
+            int result = _cm.AddNewCustomer(_person1);
+
+            Assert.True(result != 0);
+        }
+
+        [Fact]
+        public void GetSingleCustomer()
+        {
+
+            int newCustomer =  _cm.AddNewCustomer(_person1);
+            Customer result = _cm.GetSingleCustomer(newCustomer);
+
+            Assert.Equal(newCustomer, result.Id);
+
+        }
+
+        [Fact]
+        public void ListCustomers()
+        {
+            _cm.AddNewCustomer(_person1);
             _cm.AddNewCustomer(_person2);
+            int testId = _cm.AddNewCustomer(_person3);
+            Customer testCustomer = _cm.GetSingleCustomer(testId);
+
+            Customer lastCustomerFromList = new Customer();
             List<Customer> customerList = _cm.ListCustomers();
+            foreach (Customer c in customerList){
+                if (c.Id == testId){
+                    lastCustomerFromList = c;
+                }
+            }
 
-            List<Customer> _allCustomers = new List<Customer>();
-            _allCustomers.Add(_person3);
-
-            Assert.Equal(_allCustomers[0].Id, customerList[0].Id);
-
+            Assert.Equal(testCustomer.Id, lastCustomerFromList.Id);
         }
 
         // // Author: Leah Duvic
@@ -94,19 +123,12 @@ namespace Bangazon.Managers.Tests
         [Fact]
         public void ActiveCustomer()
         {
-            Customer _person4 = new Customer();
-                _person4.Name = "Hank";
-                _person4.Address = "74 Unit way";
-                _person4.City= "Fresno";
-                _person4.State= "California";
-                _person4.PostalCode= "0987";
-                _person4.Phone="736-111-4433";
-            _cm.AddNewCustomer(_person4);
+            int testId = _cm.AddNewCustomer(_person4);
 
-            var singleCustomer = _cm.GetSingleCustomer(1);
-            var activeCustomer = _cm.ActiveCustomer(1);
+            Customer singleCustomer = _cm.GetSingleCustomer(testId);
+            Customer activeCustomer = _cm.ActiveCustomer(testId);
 
-            Assert.Equal(activeCustomer.Id, singleCustomer.Id);
+            Assert.Equal(singleCustomer.Id, activeCustomer.Id);
         }
     }
 }

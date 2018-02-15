@@ -14,7 +14,7 @@ namespace Bangazon.Managers
         {
             _db = db;
         }
-        // private List<Product> _productList = new List<Product>();
+        private List<Product> _productList;
 
         public int Add(Product product)
         {
@@ -23,10 +23,26 @@ namespace Bangazon.Managers
             return id;
         }
 
-        // public List<Product> ListProducts()
-        // {
-        //     return _productList;
-        // }
+        public List<Product> ListProducts()
+        {
+            List <Product> _productList = new List <Product>();
+            _db.Query($"SELECT * FROM `Product` ", (SqliteDataReader reader) => {
+                while (reader.Read())
+                {
+                    _productList.Add(new Product(){
+                        ProductId = reader.GetInt32(0),
+                        ProductType = reader[1].ToString(),
+                        CustomerId = reader.GetInt32(2),
+                        Title = reader[3].ToString(),
+                        Description = reader[4].ToString(),
+                        Price = reader.GetDouble(5),
+                        Quantity = reader.GetInt32(6),
+                        DateCreated = reader.GetDateTime(7)
+                    });
+                }
+            });
+            return _productList;
+        }
 
         // public Product RemoveSingleProduct(int id)
         // {
@@ -54,14 +70,39 @@ namespace Bangazon.Managers
             return singleProduct;
         }
 
-        // public Product UpdateSingleProduct(int id)
-        // {
+        public Product UpdateSingleProduct(int productId, string fieldToChange, string change)
+        {
+            Product editedProduct = new Product();
+            switch (fieldToChange)
+            {
+                case "ProductType":
+                    _db.Update($"UPDATE product SET ProductType='{change}' WHERE productID = {productId}");
+                    break;
+                
+                case "Title":
+                    _db.Update($"UPDATE product SET Title='{change}' WHERE productID = {productId}");
+                    break;
 
+                case "Description":
+                    _db.Update($"UPDATE product SET Description='{change}' WHERE productID = {productId}");
+                    break;
 
-        //     product.Title = "Motorcycle";
-        //     _productList.Add(product);
-        //     _productList.
+                case "Price":
+                    double newPrice = Convert.ToDouble(change);
+                    _db.Update($"UPDATE product SET Price='{newPrice}' WHERE productID = {productId}");
+                    break;
 
-        // }
+                case "Quantity":
+                    int newQuantity = Convert.ToInt32(change);
+                    _db.Update($"UPDATE product SET Quantity='{newQuantity}' WHERE productID = {productId}");
+                    break;
+
+                default:
+                    break;
+
+            }
+            editedProduct = GetSingleProduct(productId);
+            return editedProduct;
+        }
     }
 }
